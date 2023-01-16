@@ -1,0 +1,63 @@
+name: mudad_merchant
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  # state management
+  get: ^4.6.5
+  # local storage
+  get_storage: ^2.0.3
+  # for responsive
+  responsive_framework: ^0.2.0
+  # otp
+  pinput: ^2.2.21
+  # toast show
+  fluttertoast: ^8.0.9
+  # network image show
+  cached_network_image: ^3.2.2
+  # intl
+  intl: ^0.17.0
+  # network call
+  dio: ^4.0.6
+  dio_logging_interceptor: ^1.0.1
+  connectivity_plus: ^3.0.2
+  get_it: ^7.2.0
+  # image picker
+  image_picker: ^0.8.5+3
+  # for dotted border
+  dotted_border: ^2.0.0+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/app/
+    - assets/
+    - assets/images/
+    - assets/images/view_images/
+    - assets/images/icons/
+    - assets/images/app_logo/
+    - assets/images/placeholder_and_error/
+    - assets/lottie/
+  fonts:
+    - family: 'Lato'
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
+        - asset: assets/fonts/Lato-Black.ttf
+        - asset: assets/fonts/Lato-Thin.ttf
+
