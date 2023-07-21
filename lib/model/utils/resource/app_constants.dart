@@ -10,7 +10,7 @@ class AppConstants {
   String get defaultTheme => "light";
 
   /// base url
-  String get baseUrl => 'http://13.232.39.141:8080/v1/';
+  String get baseUrl => 'http://ec2-13-127-138-135.ap-south-1.compute.amazonaws.com:8081/v1/';
   /// auth
   String get authUrl => '${baseUrl}auth/';
   String get registerUrl => '${authUrl}register';
