@@ -43,7 +43,7 @@ class VerificationScreen extends StatelessWidget {
                     "${controller.verifyPageDataList[controller.currentStep.value-1].title}${controller.currentStep.value == 4 ? (controller.isVerified.value ? "Complete":"Failed"):""}",
                     style: StyleResource.instance.styleExtraBold(
                         DimensionResource.fontSizeDoubleOverExtraLarge,
-                        ColorResource.mainColor),
+                        ColorResource.secondColor),
                     textAlign: TextAlign.center,
                   )
                 ],

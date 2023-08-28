@@ -26,7 +26,7 @@ Widget _buildLoginView(BuildContext context,RegisterController controller){
     padding:const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
     children: [
       SizedBox(height: MediaQuery.of(context).size.height*.1,),
-      Image.asset(ImageResource.instance.appLogo,height: 60,),
+      Image.asset(ImageResource.instance.appLogo,height: 122,),
       SizedBox(height: MediaQuery.of(context).size.height*.08,),
       _buildEmailPasswordRow(context,controller),
 

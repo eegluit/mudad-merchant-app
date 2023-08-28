@@ -4,6 +4,7 @@ import 'package:mudad_merchant/view/screens/auth_view/verify_otp_screen.dart';
 
 import 'package:get/get.dart' ;
 import 'package:mudad_merchant/view/screens/auth_view/store_registration_view/store_registration_view.dart';
+import 'package:mudad_merchant/view/screens/root_view/home_view/qr_code_screen.dart';
 
 import '../../view/screens/auth_view/forgot_password_screen.dart';
 import '../../view/screens/auth_view/login_screen.dart';
@@ -41,5 +42,6 @@ class AppPages {
     GetPage(name: Routes.viewAllTransactionScreen, page: ()=>const ViewAllTransactionScreen()),
     GetPage(name: Routes.kycInfoScreen, page: ()=>const KycInfoScreen()),
     GetPage(name: Routes.storeInfoScreen, page: ()=>const StoreInfoScreen()),
+    GetPage(name: Routes.qrCodeScreen , page: ()=>const QrCodeScreen())
   ];
 }

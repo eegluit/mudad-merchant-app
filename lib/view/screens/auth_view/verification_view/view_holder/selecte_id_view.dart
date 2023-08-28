@@ -23,7 +23,7 @@ class SelectIdWidget extends GetView<VerificationController> {
                 controller.verifyPageDataList[controller.currentStep.value-1].subTitle,
                 style: StyleResource.instance
                     .styleMedium(DimensionResource.fontSizeExtraLarge,
-                    ColorResource.mainColor)
+                    ColorResource.secondColor)
                     .copyWith(height: 1.7, letterSpacing: .5),
               ),
             ),
@@ -56,8 +56,8 @@ class SelectIdWidget extends GetView<VerificationController> {
                                   width: 33,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      border: Border.all(color:  ColorResource.mainColor, width: 2.5),
-                                      color: controller.selectedId.value == index ? ColorResource.mainColor:ColorResource.white),
+                                      border: Border.all(color:  ColorResource.secondColor, width: 2.5),
+                                      color: controller.selectedId.value == index ? ColorResource.secondColor:ColorResource.white),
                                   child: Center(
                                       child: controller.selectedId.value == index ? Padding(
                                         padding: const EdgeInsets.all(5.0),
@@ -67,7 +67,7 @@ class SelectIdWidget extends GetView<VerificationController> {
                                 const SizedBox(
                                   width: DimensionResource.marginSizeDefault,
                                 ),
-                                Text(data.name??"",style: StyleResource.instance.styleMedium(DimensionResource.fontSizeExtraLarge, ColorResource.mainColor).copyWith(letterSpacing: .6,),)
+                                Text(data.name??"",style: StyleResource.instance.styleMedium(DimensionResource.fontSizeExtraLarge, ColorResource.secondColor).copyWith(letterSpacing: .6,),)
                               ],
                             ),
                           )

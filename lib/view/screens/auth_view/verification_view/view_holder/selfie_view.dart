@@ -24,7 +24,7 @@ class SelfieWidget extends GetView<VerificationController> {
                   controller.verifyPageDataList[controller.currentStep.value-1].subTitle,
                   style: StyleResource.instance
                       .styleMedium(DimensionResource.fontSizeExtraLarge,
-                      ColorResource.mainColor)
+                      ColorResource.secondColor)
                       .copyWith(height: 1.7, letterSpacing: .5),
                   textAlign: TextAlign.center,
                 ),

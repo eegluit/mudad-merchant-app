@@ -14,6 +14,7 @@ class Routes {
    static const rootView = "/RootView";
    /// home
    static const createOffersScreen = "/CreateOffersScreen";
+   static const qrCodeScreen = "/QrCodeScreen";
    static const editProfileScreen = "/EditProfileScreen";
    static const changePassword = "/ChangePassword";
    static const viewAllTransactionScreen = "/ViewAllTransactionScreen";

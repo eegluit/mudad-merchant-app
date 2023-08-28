@@ -29,7 +29,7 @@ Widget _buildLoginView(BuildContext context,LoginController controller,GlobalKey
     padding:const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
     children: [
       SizedBox(height: MediaQuery.of(context).size.height*.1,),
-      Image.asset(ImageResource.instance.appLogo,height: 60,),
+      Image.asset(ImageResource.instance.appLogo,height: 122,),
       SizedBox(height: MediaQuery.of(context).size.height*.1,),
       _buildEmailPasswordRow(context,controller,key),
       const SizedBox(height: 10,),

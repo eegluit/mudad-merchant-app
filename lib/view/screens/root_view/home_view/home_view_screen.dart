@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:mudad_merchant/model/services/auth_service.dart';
 
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:mudad_merchant/model/utils/resource/color_resource.dart';
 import 'package:mudad_merchant/model/utils/resource/dimensions_resource.dart';
 import 'package:mudad_merchant/model/utils/resource/style_resource.dart';
@@ -88,7 +89,7 @@ Widget _buildHomeBody(BuildContext context ,HomeController controller){
           const SizedBox(height: 15,),
           Text("Create Offers",style: StyleResource.instance.styleSemiBold(DimensionResource.fontSizeDoubleExtraLarge, ColorResource.white),),
           const SizedBox(height: 10,),
-          Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",style: StyleResource.instance.styleRegular(DimensionResource.fontSizeDefault, ColorResource.lightGrey),),
+          Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",style: StyleResource.instance.styleRegular(DimensionResource.fontSizeDefault, ColorResource.white),),
           const SizedBox(height: 20,),
           CommonButton(text: "Create Offers", loading: false, onPressed: ()=>Get.toNamed(Routes.createOffersScreen), color: ColorResource.white,textColor: ColorResource.mainColor),
           const SizedBox(height: 20,),
@@ -116,6 +117,9 @@ Widget _buildHomeBody(BuildContext context ,HomeController controller){
           const SizedBox(height: 5,),
         ],
       )),
+      const SizedBox(height: 20,),
+      CommonButton(text: "My QR", loading: false, onPressed: ()=>Get.toNamed(Routes.qrCodeScreen) , color: ColorResource.mainColor,textColor: ColorResource.white),
+          const SizedBox(height: 20,),
     ],
   );
 }
@@ -130,7 +134,7 @@ Widget _buildHomeCardUi({required Widget child}){
           end: Alignment.bottomCenter,
           colors: [
             ColorResource.mainColor,
-            ColorResource.lightMainColor,
+            ColorResource.mainColor,
           ],
         )
     ),
@@ -175,8 +179,6 @@ Widget _buildTransactionRowUi({required Color backGroundColor,required String tr
         ),
         const SizedBox(width: 10,),
         Text(amount,style: StyleResource.instance.styleMedium(DimensionResource.fontSizeLarge, ColorResource.darkGreenColor),),
-
-
       ],
     ),
 

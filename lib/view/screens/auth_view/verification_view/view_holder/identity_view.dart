@@ -20,7 +20,7 @@ class IdentityWidget extends GetView<VerificationController> {
             controller.verifyPageDataList[controller.currentStep.value-1].subTitle,
             style: StyleResource.instance
                 .styleMedium(DimensionResource.fontSizeExtraLarge,
-                ColorResource.mainColor)
+                ColorResource.secondColor)
                 .copyWith(height: 1.7, letterSpacing: .5),
           ),
         ),
@@ -43,7 +43,7 @@ class IdentityWidget extends GetView<VerificationController> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: const Color(0xFF651F6B),
+                          color: ColorResource.secondColor,
                           width: 2,
                         ),
                       ),
@@ -51,7 +51,7 @@ class IdentityWidget extends GetView<VerificationController> {
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
                           '${index + 1}',
-                          style: StyleResource.instance.styleMedium(DimensionResource.fontSizeLarge, ColorResource.mainColor),
+                          style: StyleResource.instance.styleMedium(DimensionResource.fontSizeLarge, ColorResource.secondColor),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -61,7 +61,7 @@ class IdentityWidget extends GetView<VerificationController> {
                     ),
                     Text(
                       controller.verifyIdentityList.elementAt(index),
-                      style: StyleResource.instance.styleMedium(DimensionResource.fontSizeExtraLarge, ColorResource.mainColor),
+                      style: StyleResource.instance.styleMedium(DimensionResource.fontSizeExtraLarge, ColorResource.secondColor),
                     ),
                   ],
                 ),
