@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mudad_merchant/model/models/user_model/user_model.dart';
 
 
 import '../../../model/network_calls/api_helper/provider_helper/auth_provider.dart';

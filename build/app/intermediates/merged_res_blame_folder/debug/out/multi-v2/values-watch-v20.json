@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Dell\\Desktop\\mudad\\mudad-merchant-app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
+            "outputFile": "/Users/unthinkable-mac-0041/Desktop/Mudad/mudad-merchant-app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-3\\aae8d22016ae1fb4bb278afdd368dc02\\transformed\\jetified-play-services-auth-20.4.0\\res\\values-watch-v20\\values.xml",
+                    "source": "/Users/unthinkable-mac-0041/.gradle/caches/transforms-3/aae8d22016ae1fb4bb278afdd368dc02/transformed/jetified-play-services-auth-20.4.0/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

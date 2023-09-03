@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-
 import '../../view/widgets/log_print/log_print_condition.dart';
 import '../../view_model/routes/app_pages.dart';
 import '../models/user_model/user_model.dart';
@@ -26,13 +25,23 @@ class AuthService extends GetxService {
     getCurrentUserData();
   }
 
+  Future saveUserId(String userID) async {
+    try {
+      await box!.write(StringResource.instance.userID, userID);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   getCurrentUserData() async {
     if (box!.hasData(StringResource.instance.currentUser)) {
-      logPrint("user data box =>${box!.read(StringResource.instance.currentUser)}");
-      try{
-        user.value = User.fromJson(box!.read(StringResource.instance.currentUser));
+      logPrint(
+          "user data box =>${box!.read(StringResource.instance.currentUser)}");
+      try {
+        user.value =
+            User.fromJson(box!.read(StringResource.instance.currentUser));
         logPrint(user.value.name);
-      }catch(e){
+      } catch (e) {
         logPrint("User Data Error =>$e");
       }
     } else {
@@ -41,12 +50,6 @@ class AuthService extends GetxService {
   }
 
   Future<void> saveUserToken(String token) async {
-    final DioClient dioClient = getIt();
-    dioClient.token = token;
-    dioClient.dio.options.headers = {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'authentication': 'Bearer $token'
-    };
     try {
       await box!.write(StringResource.instance.token, token);
     } catch (e) {
@@ -79,10 +82,14 @@ class AuthService extends GetxService {
     Get.offAllNamed(Routes.loginScreen);
   }
 
+  String getUserID() {
+    return box!.read(StringResource.instance.userID) ?? "";
+  }
 
   String getUserToken() {
     return box!.read(StringResource.instance.token) ?? "";
   }
+
   bool get isFirst => box!.read(StringResource.instance.isFirst) ?? false;
   bool get isLogin => box!.hasData(StringResource.instance.currentUser);
   bool get isPermission => box!.hasData(StringResource.instance.isPermission);

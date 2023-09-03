@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Dell\\Desktop\\mudad\\mudad-merchant-app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-cs\\values-cs.xml",
+            "outputFile": "/Users/unthinkable-mac-0041/Desktop/Mudad/mudad-merchant-app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-3\\cbdbfc77071f9a37966f12c3c436b1c8\\transformed\\core-1.10.1\\res\\values-cs\\values-cs.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,356,455,560,667,786",
-                        "endColumns": "97,101,100,98,104,106,118,100",
-                        "endOffsets": "148,250,351,450,555,662,781,882"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,27",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,356,455,560,667,3038",
-                        "endColumns": "97,101,100,98,104,106,118,100",
-                        "endOffsets": "148,250,351,450,555,662,781,3134"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-3\\e7342d8a4b5fa7457a3a67525a4c7bab\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-cs\\values.xml",
+                    "source": "/Users/unthinkable-mac-0041/.gradle/caches/transforms-3/e7342d8a4b5fa7457a3a67525a4c7bab/transformed/jetified-play-services-basement-18.1.0/res/values-cs/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-3\\0f9581ba71a68e3fb430da4de2c3a120\\transformed\\jetified-play-services-base-18.0.1\\res\\values-cs\\values.xml",
+                    "source": "/Users/unthinkable-mac-0041/.gradle/caches/transforms-3/0f9581ba71a68e3fb430da4de2c3a120/transformed/jetified-play-services-base-18.0.1/res/values-cs/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -52,6 +35,23 @@
                         "startOffsets": "786,892,1052,1177,1287,1440,1567,1679,1923,2098,2209,2373,2501,2662,2817,2885,2952",
                         "endColumns": "105,159,124,109,152,126,111,100,174,110,163,127,160,154,67,66,85",
                         "endOffsets": "887,1047,1172,1282,1435,1562,1674,1775,2093,2204,2368,2496,2657,2812,2880,2947,3033"
+                    }
+                },
+                {
+                    "source": "/Users/unthinkable-mac-0041/.gradle/caches/transforms-3/cbdbfc77071f9a37966f12c3c436b1c8/transformed/core-1.10.1/res/values-cs/values-cs.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,356,455,560,667,786",
+                        "endColumns": "97,101,100,98,104,106,118,100",
+                        "endOffsets": "148,250,351,450,555,662,781,882"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,27",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,356,455,560,667,3038",
+                        "endColumns": "97,101,100,98,104,106,118,100",
+                        "endOffsets": "148,250,351,450,555,662,781,3134"
                     }
                 }
             ]

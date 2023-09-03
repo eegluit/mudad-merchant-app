@@ -11,4 +11,5 @@ class StringResource {
   String get loginKey =>"isLoggedIn";
   String get remember =>"remember";
   String get token =>"token";
+  String get userID => "userID";
 }
