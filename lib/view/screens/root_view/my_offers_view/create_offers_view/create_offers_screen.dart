@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mudad_merchant/model/models/offers/create_offer_request_model.dart';
 import 'package:mudad_merchant/model/services/auth_service.dart';
 import 'package:mudad_merchant/view/widgets/toast_view/showtoast.dart';
+import 'package:mudad_merchant/view_model/controllers/root_view_controller/my_offers_view_controller/my_offers_controller.dart';
 
 import '../../../../../model/utils/resource/color_resource.dart';
 import '../../../../../model/utils/resource/dimensions_resource.dart';
@@ -69,7 +70,7 @@ Widget _buildCreateOffersBody(
             child: CommonTextField(
               label: "Discount",
               controller: controller.discountController,
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
               hintText: "Enter your discount.".tr,
               validator: (value) {
                 if (value!.isEmpty) {

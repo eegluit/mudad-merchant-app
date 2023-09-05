@@ -39,4 +39,5 @@ class AppConstants {
 
   // Offer
   String get createOffer => '${baseUrlUpdated}Offer/';
+  String get getOffer => '${baseUrlUpdated}offer/';
 }
