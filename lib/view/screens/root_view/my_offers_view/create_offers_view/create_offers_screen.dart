@@ -27,8 +27,10 @@ class CreateOffersScreen extends StatelessWidget {
         viewControl: CreateOffersController(),
         onPageBuilder: (context, controller) => MainViewScreen(
               isBottomBarAvailable: false,
-              header: const BackButtonBarUi(
-                title: "Create Offers",
+              header: BackButtonBarUi(
+                title: controller.offerId.value == ""
+                    ? "Create Offer"
+                    : "Edit Offer",
               ),
               body: _buildCreateOffersBody(context, controller),
             ));
@@ -106,11 +108,34 @@ Widget _buildCreateOffersBody(
             "Valid From",
             controller.validFromDate.value,
             () async {
-              await controller.pickDateFormPicker().then((dateTime) {
-                if (dateTime != null) {
-                  controller.validFromDate.value = dateTime;
-                }
-              });
+              final DateTime currentDate = DateTime.now();
+              final DateTime lastDate = currentDate.add(const Duration(
+                  days: 365)); // Allow dates up to one year in the future
+
+              final DateTime? selectedDate = await showDatePicker(
+                context: context,
+                initialDate: controller.validFromDate.value ?? currentDate,
+                firstDate: currentDate,
+                lastDate: lastDate,
+                builder: (BuildContext context, Widget? child) {
+                  return Theme(
+                    data: ThemeData.light().copyWith(
+                      primaryColor: ColorResource
+                          .mainColor, // Change the primary color to your desired color
+                      colorScheme: const ColorScheme.light(
+                          primary: ColorResource
+                              .mainColor), // Change other color elements if needed
+                      buttonTheme:
+                          const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                    ),
+                    child: child!,
+                  );
+                },
+              );
+
+              if (selectedDate != null) {
+                controller.validFromDate.value = selectedDate;
+              }
             },
           )),
           const SizedBox(
@@ -122,11 +147,34 @@ Widget _buildCreateOffersBody(
             "Valid To",
             controller.validToDate.value,
             () async {
-              await controller.pickDateFormPicker().then((dateTime) {
-                if (dateTime != null) {
-                  controller.validToDate.value = dateTime;
-                }
-              });
+              final DateTime currentDate = DateTime.now();
+              final DateTime lastDate = currentDate.add(const Duration(
+                  days: 365)); // Allow dates up to one year in the future
+
+              final DateTime? selectedDate = await showDatePicker(
+                context: context,
+                initialDate: controller.validToDate.value ?? currentDate,
+                firstDate: currentDate,
+                lastDate: lastDate,
+                builder: (BuildContext context, Widget? child) {
+                  return Theme(
+                    data: ThemeData.light().copyWith(
+                      primaryColor: ColorResource
+                          .mainColor, // Change the primary color to your desired color
+                      colorScheme: const ColorScheme.light(
+                          primary: ColorResource
+                              .mainColor), // Change other color elements if needed
+                      buttonTheme:
+                        const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                    ),
+                    child: child!,
+                  );
+                },
+              );
+
+              if (selectedDate != null) {
+                controller.validToDate.value = selectedDate;
+              }
             },
           )),
         ],
@@ -183,31 +231,60 @@ Widget _buildCreateOffersBody(
         height: 40,
       ),
       Obx(() => CommonButton(
-            text: "Save",
+            text: controller.offerId.value == "" ? "Save" : "Confirm",
             color: ColorResource.mainColor,
             loading: controller.isLoading.value,
             onPressed: () {
               controller.isLoading.value = true;
-              controller.offersService
-                  .createOffer(CreateOfferRequestModel(
-                      couponCode: controller.couponCodeController.text,
-                      discount: int.parse(controller.discountController.text),
-                      discountType: controller.selectedDiscountType.string,
-                      validFrom: controller.validFromDate.string,
-                      validTo: controller.validToDate.string,
-                      NumberOfTime: int.parse(controller.itemsController.text),
-                      Description: controller.descriptionController.text,
-                      UserId: controller.userID))
-                  .then((response) {
-                if (response.code != 200) {
-                  controller.isLoading.value = false;
-                  toastShow(error: true, massage: response.errorMessage);
-                } else {
-                  controller.isLoading.value = false;
-                  toastShow(error: false, massage: response.successMessage);
-                  Navigator.pop(context);
-                }
-              });
+              if (controller.offerId.value == "") {
+                controller.offersService
+                    .createOffer(CreateOfferRequestModel(
+                        couponCode: controller.couponCodeController.text,
+                        discount: int.parse(controller.discountController.text),
+                        discountType: controller.selectedDiscountType.string,
+                        validFrom: controller.validFromDate.string,
+                        validTo: controller.validToDate.string,
+                        NumberOfTime:
+                            int.parse(controller.itemsController.text),
+                        Description: controller.descriptionController.text,
+                        UserId: controller.userID))
+                    .then((response) {
+                  if (response.code != 200) {
+                    controller.isLoading.value = false;
+                    toastShow(error: true, massage: response.errorMessage);
+                  } else {
+                    controller.isLoading.value = false;
+                    toastShow(error: false, massage: response.successMessage);
+                    Navigator.pop(context);
+                  }
+                });
+              } else {
+                controller.offersService
+                    .updateOffer(
+                        controller.offerId.value,
+                        CreateOfferRequestModel(
+                            couponCode: controller.couponCodeController.text,
+                            discount:
+                                int.parse(controller.discountController.text),
+                            discountType:
+                                controller.selectedDiscountType.string,
+                            validFrom: controller.validFromDate.string,
+                            validTo: controller.validToDate.string,
+                            NumberOfTime:
+                                int.parse(controller.itemsController.text),
+                            Description: controller.descriptionController.text,
+                            UserId: controller.userID))
+                    .then((response) {
+                  if (response.code != 200) {
+                    controller.isLoading.value = false;
+                    toastShow(error: true, massage: response.errorMessage);
+                  } else {
+                    controller.isLoading.value = false;
+                    toastShow(error: false, massage: response.successMessage);
+                    Navigator.pop(context);
+                  }
+                });
+              }
             },
           )),
     ],

@@ -13,31 +13,19 @@ class MyOffersController extends GetxController {
 
   Future getOffers() async {
     isLoading.value = true;
-    print('ABC1 Check ${isLoading.value}');
 
     offersService.getOffer(userID).then((response) {
-      print('ABC1 Checker ${isLoading.value}');
 
       if (response.code != 200) {
         isLoading.value = false;
         toastShow(error: true, massage: response.errorMessage);
       } else {
         offerList = response.result!;
-        print('ABC1 $isLoading');
         isLoading.value = false;
-        print('ABC2 $isLoading');
-
         toastShow(error: false, massage: response.successMessage);
       }
     });
   }
-
-  // void setSelectedIndex(int index) {
-  //   print('ABC12345 ${index}');
-
-  //   selectedIndex = index;
-  //   // You can perform actions based on the selected index if needed
-  // }
 
   @override
   void onInit() {

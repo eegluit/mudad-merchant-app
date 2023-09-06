@@ -14,7 +14,6 @@ class GetOfferResponseModel {
         .map((i) => OfferResponseModel.fromJson(i))
         .toList();
     code = json['code'];
-    print('ABCD $result');
     successMessage = json['successMessage'];
     errorMessage = json['errorMessage'];
   }

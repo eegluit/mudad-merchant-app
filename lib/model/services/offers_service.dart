@@ -11,7 +11,6 @@ class OffersService {
   Future<CreateOfferResponseModel> createOffer(
       CreateOfferRequestModel requestModel) async {
     try {
-      print('ABC ${requestModel.toJson()}');
       var response = await Dio().post(
         '${AppConstants.instance.createOffer}${requestModel.UserId}',
         data: requestModel.toJson(),
@@ -26,7 +25,6 @@ class OffersService {
       );
       CreateOfferResponseModel model =
           CreateOfferResponseModel.fromJson(response.data);
-      print('ABC ${response}');
       model.code = 200;
       return model;
     } on DioError catch (e) {
@@ -60,8 +58,6 @@ class OffersService {
 
   Future<DeleteOfferResponseModel> deleteOffer(String offerId) async {
     try {
-      print('ABC ${offerId}');
-
       var response = await Dio().delete(
         '${AppConstants.instance.getOffer}$offerId',
         options: Options(
@@ -71,15 +67,11 @@ class OffersService {
           },
         ),
       );
-      print('ABC ${response}');
       DeleteOfferResponseModel model =
           DeleteOfferResponseModel.fromJson(response.data);
       model.code = response.statusCode;
-      print('ABC ${model}');
       return model;
     } on DioError catch (e) {
-      print('ABC ${e}');
-
       if (e.type == DioErrorType.response) {
         DeleteOfferResponseModel model =
             DeleteOfferResponseModel.fromJson(e.response!.data);
@@ -112,7 +104,6 @@ class OffersService {
   Future<DeleteOfferResponseModel> updateOffer(
       String offerId, CreateOfferRequestModel requestModel) async {
         try {
-      print('ABC ${requestModel.toJson()}');
       var response = await Dio().put(
         '${AppConstants.instance.createOffer}${offerId}',
         data: requestModel.toJson(),
@@ -127,7 +118,6 @@ class OffersService {
       );
       DeleteOfferResponseModel model =
           DeleteOfferResponseModel.fromJson(response.data);
-      print('ABC ${response}');
       model.code = 200;
       return model;
     } on DioError catch (e) {
@@ -173,12 +163,9 @@ class OffersService {
           },
         ),
       );
-      print('ABC123 ${response.data}');
-
       GetOfferResponseModel model =
           GetOfferResponseModel.fromJson(response.data);
       model.code = response.statusCode;
-      print('ABC1 ${model}');
       return model;
     } on DioError catch (e) {
       if (e.type == DioErrorType.response) {

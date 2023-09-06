@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mudad_merchant/model/models/offers/get_offer_response_model.dart';
 import 'package:mudad_merchant/model/utils/resource/decoration_resource.dart';
 import 'package:mudad_merchant/model/utils/resource/image_resource.dart';
 import 'package:mudad_merchant/view/widgets/button_view/common_button.dart';
@@ -21,8 +22,6 @@ class MyOffersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('ABC Check 123');
-
     return BaseView(
         viewControl: MyOffersController(),
         onPageBuilder: (context, controller) => MainViewScreen(
@@ -34,8 +33,6 @@ class MyOffersScreen extends StatelessWidget {
 
 Widget _buildMyOffersHeader(
     BuildContext context, MyOffersController controller) {
-  print('ABC Check 1234 ${controller.isLoading.value}');
-
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20),
     child: Align(
@@ -50,7 +47,6 @@ Widget _buildMyOffersHeader(
 }
 
 Widget _buildMyOffersBody(BuildContext context, MyOffersController controller) {
-  print('ABC Check ${controller.isLoading.value}');
   return Obx(
     () => controller.isLoading.value
         ? const Center(
@@ -83,6 +79,7 @@ Widget _buildMyOffersBody(BuildContext context, MyOffersController controller) {
                       code: controller.offerList[index].couponCode ?? "-",
                       context: context,
                       controller: controller,
+                      offerModel: controller.offerList[index],
                       offerId: controller.offerList[index].id ?? '',
                     )),
               ),
@@ -97,6 +94,7 @@ Widget _buildOffersBoxUi({
   required String code,
   required BuildContext context,
   required MyOffersController controller,
+  required OfferResponseModel offerModel,
   required String offerId,
 }) {
   return Container(
@@ -109,78 +107,85 @@ Widget _buildOffersBoxUi({
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
-            height: 50,
-            width: 100,
-            child: cachedNetworkImage(image, fit: BoxFit.contain)),
-        const SizedBox(
-          width: 20,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              discountTitle,
-              style: StyleResource.instance.styleMedium(
-                  DimensionResource.fontSizeExtraLarge,
-                  ColorResource.orangeColor),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            GestureDetector(
-              onTap: () {
-                // Copy the text to the clipboard when tapped
-                Clipboard.setData(ClipboardData(text: code));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Text copied to clipboard')),
-                );
-              },
-              child: Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(6)),
-                child: DottedBorder(
-                    borderType: BorderType.RRect,
-                    radius: const Radius.circular(6),
-                    dashPattern: const [2, 2],
-                    color: ColorResource.black,
-                    strokeWidth: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      child: Row(
-                        children: [
-                          Text(
-                            code,
-                            style: StyleResource.instance.styleSemiBold(
-                                DimensionResource.fontSizeSmall,
-                                ColorResource.textColor),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Icon(
-                            Icons.copy,
-                            size: 15,
-                            color: ColorResource.black,
-                          )
-                        ],
-                      ),
-                    )),
+        Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          SizedBox(
+              height: 50,
+              width: 100,
+              child: cachedNetworkImage(image, fit: BoxFit.contain)),
+          const SizedBox(
+            width: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                discountTitle,
+                style: StyleResource.instance.styleMedium(
+                    DimensionResource.fontSizeExtraLarge,
+                    ColorResource.orangeColor),
               ),
-            ),
-          ],
-        ),
+              const SizedBox(
+                height: 15,
+              ),
+              GestureDetector(
+                onTap: () {
+                  // Copy the text to the clipboard when tapped
+                  Clipboard.setData(ClipboardData(text: code));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Text copied to clipboard')),
+                  );
+                },
+                child: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(6)),
+                  child: DottedBorder(
+                      borderType: BorderType.RRect,
+                      radius: const Radius.circular(6),
+                      dashPattern: const [2, 2],
+                      color: ColorResource.black,
+                      strokeWidth: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        child: Row(
+                          children: [
+                            Text(
+                              code,
+                              style: StyleResource.instance.styleSemiBold(
+                                  DimensionResource.fontSizeSmall,
+                                  ColorResource.textColor),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            const Icon(
+                              Icons.copy,
+                              size: 15,
+                              color: ColorResource.black,
+                            )
+                          ],
+                        ),
+                      )),
+                ),
+              ),
+            ],
+          ),
+        ]),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             GestureDetector(
               onTap: () {
-                // Copy the text to the clipboard when tapped
-                Clipboard.setData(ClipboardData(text: code));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Text copied to clipboard')),
-                );
+                Get.toNamed(Routes.createOffersScreen, arguments: [
+                  offerModel.couponCode,
+                  offerModel.discount,
+                  offerModel.discountType,
+                  offerModel.validFrom,
+                  offerModel.validTo,
+                  offerModel.numberOfTime,
+                  offerModel.description,
+                  offerModel.id
+                ]);
               },
               child: const Icon(
                 Icons.edit,

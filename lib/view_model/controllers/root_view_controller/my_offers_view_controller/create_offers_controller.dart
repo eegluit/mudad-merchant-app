@@ -14,6 +14,7 @@ class CreateOffersController extends GetxController {
   TextEditingController itemsController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   RxBool isLoading = false.obs;
+  RxString offerId = "".obs;
   RxString couponCodeError = "".obs;
   RxString itemsError = "".obs;
   RxString descriptionError = "".obs;
@@ -26,6 +27,22 @@ class CreateOffersController extends GetxController {
   Rx<DateTime> createDate = DateTime.now().obs;
   Rx<DateTime> validFromDate = DateTime.now().obs;
   Rx<DateTime> validToDate = DateTime.now().obs;
+
+  @override
+  void onInit() {
+    print('ABC ${Get.arguments}');
+    if (Get.arguments != null) {
+      couponCodeController.text = Get.arguments[0];
+      discountController.text = Get.arguments[1].toString();
+      itemsController.text = Get.arguments[5].toString();
+      selectedDiscountType.value = Get.arguments[2].toString();
+      descriptionController.text = Get.arguments[6];
+      validFromDate.value = DateTime.parse(Get.arguments[3].toString());
+      validToDate.value = DateTime.parse(Get.arguments[4].toString());
+      offerId.value = Get.arguments[7];
+    }
+    super.onInit();
+  }
 
   Future<DateTime?> pickDateFormPicker() async {
     DateTime? currentDate;
