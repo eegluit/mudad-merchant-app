@@ -30,7 +30,6 @@ class CreateOffersController extends GetxController {
 
   @override
   void onInit() {
-    print('ABC ${Get.arguments}');
     if (Get.arguments != null) {
       couponCodeController.text = Get.arguments[0];
       discountController.text = Get.arguments[1].toString();

@@ -125,8 +125,8 @@ Widget _buildCreateOffersBody(
                       colorScheme: const ColorScheme.light(
                           primary: ColorResource
                               .mainColor), // Change other color elements if needed
-                      buttonTheme:
-                          const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                      buttonTheme: const ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary),
                     ),
                     child: child!,
                   );
@@ -164,8 +164,8 @@ Widget _buildCreateOffersBody(
                       colorScheme: const ColorScheme.light(
                           primary: ColorResource
                               .mainColor), // Change other color elements if needed
-                      buttonTheme:
-                        const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                      buttonTheme: const ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary),
                     ),
                     child: child!,
                   );
@@ -254,8 +254,11 @@ Widget _buildCreateOffersBody(
                     toastShow(error: true, massage: response.errorMessage);
                   } else {
                     controller.isLoading.value = false;
+                    Get.back(); // Pop the current screen
+                    final previousController = Get.find<MyOffersController>();
+                    previousController.isLoading.value = true;
+                    previousController.getOffers();
                     toastShow(error: false, massage: response.successMessage);
-                    Navigator.pop(context);
                   }
                 });
               } else {
@@ -281,7 +284,10 @@ Widget _buildCreateOffersBody(
                   } else {
                     controller.isLoading.value = false;
                     toastShow(error: false, massage: response.successMessage);
-                    Navigator.pop(context);
+                    Get.back(); // Pop the current screen
+                    final previousController = Get.find<MyOffersController>();
+                    previousController.isLoading.value = true;
+                    previousController.getOffers();
                   }
                 });
               }

@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mudad_merchant/model/models/offers/get_offer_response_model.dart';
 import 'package:mudad_merchant/model/services/auth_service.dart';
@@ -15,7 +16,6 @@ class MyOffersController extends GetxController {
     isLoading.value = true;
 
     offersService.getOffer(userID).then((response) {
-
       if (response.code != 200) {
         isLoading.value = false;
         toastShow(error: true, massage: response.errorMessage);
@@ -29,10 +29,6 @@ class MyOffersController extends GetxController {
 
   @override
   void onInit() {
-    // Observe changes in the selected index
-    print('ABC1234 ${selectedIndex}');
-
-    // Call getOffers when the My Offers tab is selected (index 1)
     getOffers();
 
     super.onInit();
