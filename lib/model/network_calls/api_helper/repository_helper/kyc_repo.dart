@@ -17,8 +17,16 @@ class KycRepo {
   });
 
   Future<ApiResponse> verifyIdentity(Map<String, dynamic> signInBody) async {
+    var token = get_pack.Get.find<AuthService>().getUserToken();
     try {
-      Response response = await dioClient.post(AppConstants.instance.verifyIdentityUrl, data: json.encode(signInBody),);
+      Response response = await Dio().post(
+        AppConstants.instance.verifyIdentityUrl,
+        data: json.encode(signInBody),
+        options: Options(
+          contentType: Headers.jsonContentType,
+          headers: {'authentication': 'Bearer $token'},
+        ),
+      );
       logPrint("response.data ${response.data}");
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -27,21 +35,25 @@ class KycRepo {
     }
   }
 
-  Future<ApiResponse> uploadIdProof(Map<String, dynamic> uploadIdProofData) async {
+  Future<ApiResponse> uploadIdProof(
+      Map<String, dynamic> uploadIdProofData) async {
     FormData fileData = FormData.fromMap({
       "document": await MultipartFile.fromFile(
         uploadIdProofData["file"].path,
-        contentType:  MediaType("image", "jpg"),
+        contentType: MediaType("image", "jpg"),
         filename: uploadIdProofData["file"].path.split('/').last,
       ),
     });
+    var token = get_pack.Get.find<AuthService>().getUserToken();
     try {
-      Response response = await dioClient.post(AppConstants.instance.uploadIdProofUrl, data: fileData,options: Options(
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'authentication': 'Bearer ${get_pack.Get.find<AuthService>().getUserToken()}'
-        }
-      ));
+      Response response =
+          await Dio().post(AppConstants.instance.uploadIdProofUrl,
+              data: fileData,
+              options: Options(headers: {
+                'Content-Type': 'multipart/form-data',
+                'authentication':
+                    'Bearer ${get_pack.Get.find<AuthService>().getUserToken()}'
+              }));
       logPrint("response.data ${response.data}");
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -50,21 +62,24 @@ class KycRepo {
     }
   }
 
-  Future<ApiResponse> selfieUpload(Map<String, dynamic> uploadIdProofData) async {
+  Future<ApiResponse> selfieUpload(
+      Map<String, dynamic> uploadIdProofData) async {
     FormData fileData = FormData.fromMap({
       "document": await MultipartFile.fromFile(
         uploadIdProofData["file"].path,
-        contentType:  MediaType("image", "jpg"),
+        contentType: MediaType("image", "jpg"),
         filename: uploadIdProofData["file"].path.split('/').last,
       ),
     });
     try {
-      Response response = await dioClient.post(AppConstants.instance.selfieUploadUrl, data: fileData,options: Options(
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'authentication': 'Bearer ${get_pack.Get.find<AuthService>().getUserToken()}'
-          }
-      ));
+      Response response =
+          await Dio().post(AppConstants.instance.selfieUploadUrl,
+              data: fileData,
+              options: Options(headers: {
+                'Content-Type': 'multipart/form-data',
+                'authentication':
+                    'Bearer ${get_pack.Get.find<AuthService>().getUserToken()}'
+              }));
       logPrint("response.data ${response.data}");
       return ApiResponse.withSuccess(response);
     } catch (e) {

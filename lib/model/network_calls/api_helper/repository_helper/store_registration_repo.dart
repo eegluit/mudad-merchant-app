@@ -25,7 +25,7 @@ class StoreRegistrationRepo {
       "image": await MultipartFile.fromFile(storeRegistrationBody["image"].path, contentType:  MediaType("image", "jpg"), filename: storeRegistrationBody["image"].path.split('/').last,),
     });
     try {
-      Response response = await dioClient.post(AppConstants.instance.storeRegistrationUrl, data: fileData,options: Options(
+      Response response = await Dio().post(AppConstants.instance.storeRegistrationUrl, data: fileData,options: Options(
           headers: {
             'Content-Type': 'multipart/form-data',
             'authentication': 'Bearer ${get_pack.Get.find<AuthService>().getUserToken()}'

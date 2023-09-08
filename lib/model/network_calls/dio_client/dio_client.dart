@@ -7,8 +7,6 @@ import '../../../view/widgets/log_print/log_print_condition.dart';
 import '../../services/auth_service.dart';
 import 'logging_interceptor.dart';
 
-
-
 class DioClient {
   final String baseUrl;
   final LoggingInterceptor? loggingInterceptor;
@@ -16,10 +14,14 @@ class DioClient {
   late Dio dio;
   late String token;
 
-  DioClient(this.baseUrl, Dio? dioC, {this.loggingInterceptor,}) {
-    token = "";
+
+  DioClient(
+    this.baseUrl,
+    Dio? dioC, {
+    this.loggingInterceptor,
+  }) {
     token = get_pack.Get.find<AuthService>().getUserToken();
-    logPrint("Token : $token");
+    logPrint("ABCD Token : $token");
     dio = dioC ?? Dio();
     dio
       ..options.baseUrl = baseUrl
@@ -39,7 +41,13 @@ class DioClient {
     );
   }
 
-  Future<Response> get(String uri, {Map<String, dynamic>? queryParameters, Options? options, CancelToken? cancelToken, ProgressCallback? onReceiveProgress,}) async {
+  Future<Response> get(
+    String uri, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       var response = await dio.get(
         uri,
@@ -52,13 +60,20 @@ class DioClient {
     } on SocketException catch (e) {
       throw SocketException(e.toString());
     } on FormatException catch (_) {
-      throw const  FormatException("Unable to process the data");
+      throw const FormatException("Unable to process the data");
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<Response> post(String uri, {data, Map<String, dynamic>? queryParameters, Options? options, CancelToken? cancelToken, ProgressCallback? onSendProgress, ProgressCallback? onReceiveProgress,
+  Future<Response> post(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     try {
       var response = await dio.post(
@@ -79,7 +94,15 @@ class DioClient {
     }
   }
 
-  Future<Response> put(String uri, {data, Map<String, dynamic>? queryParameters, Options? options, CancelToken? cancelToken, ProgressCallback? onSendProgress, ProgressCallback? onReceiveProgress,}) async {
+  Future<Response> put(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       var response = await dio.put(
         uri,
@@ -99,7 +122,13 @@ class DioClient {
     }
   }
 
-  Future<Response> delete(String uri, {data, Map<String, dynamic>? queryParameters, Options? options, CancelToken? cancelToken,}) async {
+  Future<Response> delete(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+  }) async {
     try {
       var response = await dio.delete(
         uri,
@@ -110,7 +139,7 @@ class DioClient {
       );
       return response;
     } on FormatException catch (_) {
-      throw const  FormatException("Unable to process the data");
+      throw const FormatException("Unable to process the data");
     } catch (e) {
       logPrint("catch $e");
       rethrow;

@@ -28,7 +28,7 @@ class AppConstants {
   String get selfieUploadUrl => '${kycUrl}upload-selfie';
 
   /// kyc
-  String get storeUrl => '${baseUrl}store/';
+  String get storeUrl => '${baseUrl}stores/';
   String get storeRegistrationUrl => '${storeUrl}register';
 
   /// user data
