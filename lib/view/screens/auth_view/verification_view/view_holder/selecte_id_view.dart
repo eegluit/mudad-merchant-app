@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudad_merchant/model/utils/resource/image_resource.dart';
 
+import '../../../../widgets/toast_view/showtoast.dart';
 import '/../../model/utils/resource/color_resource.dart';
 import '/../../model/utils/resource/dimensions_resource.dart';
 import '/../../model/utils/resource/style_resource.dart';
@@ -39,7 +40,9 @@ class SelectIdWidget extends GetView<VerificationController> {
                     return GestureDetector(
                       onTap: (){
                         controller.selectedId.value = index;
-                        controller.openSelfieCamera();
+                        controller.onSelectId();
+                        // controller.selectedId.value = index;
+                        // controller.openSelfieCamera();
                       },
                       child: Card(
                           margin: const EdgeInsets.only(bottom: DimensionResource.marginSizeExtraLarge),

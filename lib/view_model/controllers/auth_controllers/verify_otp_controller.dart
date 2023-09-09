@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_document_reader_api/document_reader.dart';
 import 'package:get/get.dart';
 import 'package:mudad_merchant/view_model/routes/app_pages.dart';
 
@@ -21,10 +25,24 @@ class VerifyOtpController extends GetxController {
   RxInt start = 30.obs;
   var isLoading = false.obs;
   @override
-  void onInit() {
+  Future<void> onInit() async {
     if (Get.arguments != null) {
       backData = Get.arguments;
     }
+    logPrint("Initializing...");
+    ByteData byteData = await rootBundle.load("assets/regula.license");
+
+    DocumentReader.initializeReader({
+      "license": base64.encode(byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes)),
+      "delayedNNLoad": true
+    }).then((s) {
+      log(s);
+      //isInitialise.value = true;
+    }).catchError((Object error) async {
+      logPrint((error as PlatformException).message ?? "");
+      logPrint("error rer ${(error as PlatformException).message ?? ""}");
+    });
     startTimer();
     super.onInit();
   }

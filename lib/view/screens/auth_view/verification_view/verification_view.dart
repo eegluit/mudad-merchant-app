@@ -70,11 +70,11 @@ class VerificationScreen extends StatelessWidget {
               children: [
                 Visibility(
                     visible: controller.currentStep.value == 1 || (controller.currentStep.value == 2 && controller.selectedIdPic.value.path != "") ||  controller.currentStep.value == 3 || controller.currentStep.value == 4 ,
-                    child: CommonButton(text:controller.currentStep.value == 1? "Get Started": controller.currentStep.value == 2 ? "Continue" : controller.currentStep.value == 3 ? controller.selectSelfie.value.path !=""? "Next":"Start" : controller.isVerified.value ?"Next":"Try Again", loading: controller.isLoading.value, onPressed: controller.currentStep.value == 1? controller.onVerifyIdentity:controller.currentStep.value == 2?controller.onSelectId:controller.currentStep.value == 3?controller.onTakeSelfie:controller.onVerificationComplete , color: ColorResource.mainColor)),
+                    child: CommonButton(text:controller.currentStep.value == 1? "Get Started": controller.currentStep.value == 2 ? "Continue" : controller.currentStep.value == 3 ? controller.selectSelfie.value.path !=""? "Next":"Start" : controller.isVerified.value ?"Next":"Try Again", loading: controller.isLoading.value, onPressed: controller.currentStep.value == 1? controller.onVerifyIdentity:controller.currentStep.value == 2?controller.onUploadDocument:controller.currentStep.value == 3?controller.onTakeSelfie:controller.onVerificationComplete , color: ColorResource.mainColor)),
                 const SizedBox(height: 20,),
                 Visibility(
                     visible: (controller.currentStep.value == 3 && controller.selectSelfie.value.path != "") ||  (controller.currentStep.value == 4 && !controller.isVerified.value),
-                    child: CommonButton(text: controller.currentStep.value == 3 ? "Re-Take":"skip for now", loading: false, onPressed:controller.currentStep.value == 3?controller.openSelfieCamera :controller.onSkipNowButton , color: ColorResource.white,textColor: ColorResource.secondColor,)),
+                    child: CommonButton(text: controller.currentStep.value == 3 ? "Re-Take":"skip for now", loading: false, onPressed:controller.currentStep.value == 3? controller.openSelfieCamera :controller.onSkipNowButton , color: ColorResource.white,textColor: ColorResource.secondColor,)),
               ],
             )
           ),))

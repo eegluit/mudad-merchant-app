@@ -32,6 +32,7 @@ class DioClient {
         'Content-Type': 'application/json;charset=UTF-8',
         'authentication': 'Bearer $token'
       };
+
     dio.interceptors.add(loggingInterceptor!);
     dio.interceptors.add(
       DioLoggingInterceptor(

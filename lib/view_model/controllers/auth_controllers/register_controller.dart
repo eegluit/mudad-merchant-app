@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_document_reader_api/document_reader.dart';
 import 'package:get/get.dart';
 import 'package:mudad_merchant/model/models/user_model/user_model.dart';
 
@@ -51,5 +53,19 @@ class RegisterController extends GetxController{
       }
     }
   };
+
+  @override
+  void onInit() {
+    DocumentReader.prepareDatabase("Full").then((s) {
+      // do something
+    }).catchError((Object error) =>
+        logPrint("error rer ${(error as PlatformException).message ?? ""}"));
+    DocumentReader.runAutoUpdate("Full").then((s) {
+      // do something
+    }).catchError(
+            (Object error) => print((error as PlatformException).message));
+    // TODO: implement onInit
+    super.onInit();
+  }
 
 }
